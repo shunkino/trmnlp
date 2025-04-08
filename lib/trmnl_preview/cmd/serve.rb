@@ -21,6 +21,7 @@ end.parse!
 
 # Must come AFTER parsing options
 require_relative '../app'
+puts "my own version"
 
 # Now we can configure things
 TRMNLPreview::App.set(:user_dir, ARGV[1] || Dir.pwd)

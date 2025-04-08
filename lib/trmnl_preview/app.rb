@@ -11,7 +11,7 @@ module TRMNLPreview
     # Sinatra settings
     set :views, File.join(File.dirname(__FILE__), '..', '..', 'web', 'views')
     set :public_folder, File.join(File.dirname(__FILE__), '..', '..', 'web', 'public')
-    
+
     def initialize(*args)
       super
 
@@ -95,6 +95,20 @@ module TRMNLPreview
         generator = ScreenGenerator.new(html, image: true)
         img_path = generator.process
         send_file img_path, type: 'image/png', disposition: 'inline'
+      end
+    end
+
+    get '/pluginassets/*' do
+      # Construct the path using the config object
+      file_path = File.join(@context.config.plugin_public_dir, params[:splat].first)
+      # Optional: Add debugging puts statements if needed
+      # puts "Requested plugin asset: #{params[:splat].first}"
+      # puts "Serving from plugin_public_dir: #{@context.config.plugin_public_dir}"
+      # puts "Attempting to serve file: #{file_path}"
+      if File.exist?(file_path) && !File.directory?(file_path)
+        send_file file_path
+      else
+        halt 404, "File not found"
       end
     end
   end

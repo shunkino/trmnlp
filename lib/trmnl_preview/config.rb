@@ -22,6 +22,8 @@ module TRMNLPreview
 
     def views_dir = File.join(root_dir, 'views')
 
+    def plugin_public_dir = File.join(root_dir, 'public')
+
     def data_path
       static? ? static_path : File.join(temp_dir, 'data.json')
     end
