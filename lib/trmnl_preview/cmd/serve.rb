@@ -1,7 +1,8 @@
 require 'optionparser'
 
 options = {
-  bind: '127.0.0.1',
+  # bind: '127.0.0.1',
+  bind: '0.0.0.0',
   port: 4567
 }
 

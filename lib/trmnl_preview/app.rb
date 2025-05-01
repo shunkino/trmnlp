@@ -8,6 +8,11 @@ require_relative 'screen_generator'
 
 module TRMNLPreview
   class App < Sinatra::Base
+    configure :production, :development do
+        host_whitelist = ENV.fetch('HOST_WHITELIST', 'localhost,127.0.0.1').split(',')
+        use Rack::Protection, host_whitelist: host_whitelist
+        enable :logging
+    end
     # Sinatra settings
     set :views, File.join(File.dirname(__FILE__), '..', '..', 'web', 'views')
     set :public_folder, File.join(File.dirname(__FILE__), '..', '..', 'web', 'public')
