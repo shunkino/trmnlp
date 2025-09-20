@@ -1,3 +1,7 @@
+# Personal fork for my kindle based trmnl inspired dashboard
+* Added public directory for easy image hosting
+* Allow access from other hosts
+
 # trmnlp
 
 A basic self-hosted web server to ease the development and sharing of [TRMNL](https://usetrmnl.com/) plugins.
